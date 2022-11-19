@@ -39,6 +39,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Files;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import org.owasp.webscarab.model.ConversationID;
@@ -80,7 +81,7 @@ public class OpenBrowserAction extends AbstractAction {
         File tmpFile;
         String samlMessage = this.samlModel.getDecodedSAMLMessage(id);
         try {
-            tmpFile = File.createTempFile("saml-", ".xml");
+            tmpFile = Files.createTempFile("saml-", ".xml").toFile();
             tmpFile.deleteOnExit();
             FileWriter fileWriter = new FileWriter(tmpFile);
             fileWriter.write(samlMessage);
